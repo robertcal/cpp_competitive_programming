@@ -3,4 +3,4 @@ project(cpp_competitive_programming)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(cpp_competitive_programming AtCoder/APG4b/A.cpp)
+add_executable(A AtCoder/AGC/030/A.cpp)
