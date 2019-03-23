@@ -18,7 +18,7 @@ int main() {
 
     while (ans.size() < b_size) {
         int max_j = -1;
-        for (int j = 0; j < b.size(); ++j) {
+        for (int j = 0; j < b.size(); ++j) { //ここは逆にループを回せば、maxとかいらなくなるはず
             if (b[j] == j + 1) {
                 max_j = j;
             }
