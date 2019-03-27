@@ -11,9 +11,14 @@ int main() {
 
     int ans = 0;
 
-    for (int i = 0; i < (1 << N-1); ++i) { //2^(N-1)のbit全探索
+    for (int bit = 0; bit < (1 << N-1); ++bit) { //2^(N-1)のbit全探索
         int sum = 0;
 
+        for (int i = 0; i < N; ++i) {
+            if (bit & (1 << i)) {
+
+            }
+        }
 
     }
 }
