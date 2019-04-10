@@ -12,8 +12,8 @@ int main() {
         cin >> h[i];
     }
 
-    vector<long long> dp(N);
-    for (int i = 0; i < N; ++i) {
+    vector<long long> dp(N+K);
+    for (int i = 0; i < N+K; ++i) {
         dp[i] = INF;
     }
 
@@ -22,7 +22,7 @@ int main() {
 
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < K; ++j) {
-            dp[i] = min(dp[i], dp[i-(j+1)] + abs(h[i] - h[i-(j+1)]));
+            dp[i+j+1] = min(dp[i+j+1], dp[i] + abs(h[i+j+1] - h[i]));
         }
     }
 
