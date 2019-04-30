@@ -19,11 +19,11 @@ int main() {
 
     int ans = 0;
 
-    for (int bit = 0; bit < (1 << N); ++bit) {
+    for (int bit = 0; bit < (1 << N); ++bit) { //2^Nのbit全探索
         int sum_x = 0;
         int sum_y = 0;
 
-        for (int k = 0; k < N; ++k) {
+        for (int k = 0; k < N; ++k) { //bitを一つずつ見ていく
             if (bit & (1 << k)) {
                 sum_x += V[k];
                 sum_y += C[k];
