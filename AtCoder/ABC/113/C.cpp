@@ -7,23 +7,27 @@ int main() {
 
     int N, M; cin >> N >> M;
 
-    vector<pair<int, int>> city(M);
+    vector<vector<pair<int, int>>> city(1e5+1); //ここの数に注意
     for (int i = 0; i < M; ++i) {
         int P, Y;
         cin >> P >> Y;
-        city[i] = make_pair(P, Y);
+        --P;
+        city[P].push_back({Y, i});
     }
 
-    sort(city.begin(), city.end());
+    vector<pair<int, int>> ans(M);
+    for (int i = 0; i < N; ++i) {
+        //県の中でソート
+        sort(city[i].begin(), city[i].end());
 
-    int count = 1;
-    int before_p = 0;
-    for (int i = 0; i < M; ++i) {
-        if (before_p != city[i].first) {
-            count = 1;
+        for (int j = 0; j < city[i].size(); ++j) {
+            //最初の順番でコンテナに入れていく
+            ans[city[i][j].second] = make_pair(i+1, j+1);
         }
+    }
 
-        cout << setw(6) << setfill('0') << city[i].first;
-        cout << setw(6) << setfill('0') << count << endl;
+    for (int i = 0; i < M; ++i) {
+        cout << setw(6) << setfill('0') << ans[i].first;
+        cout << setw(6) << setfill('0') << ans[i].second << endl;
     }
 }
