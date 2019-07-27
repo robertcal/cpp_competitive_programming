@@ -17,7 +17,7 @@ int main() {
         cin >> B[i];
     }
 
-    int ans_1 = 0;
+    int ans_1 = 0; //型がintなので失敗していた
 
     for (int i = N; i > 0; --i) {
         if (A[i] + A[i-1] < B[i-1]) {
