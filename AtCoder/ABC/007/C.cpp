@@ -21,10 +21,10 @@ int main() {
         cin >> f[i];
     }
 
-    int d[r][c]; //スタート位置からの距離を持つ配列
+    int d[c][r]; //スタート位置からの距離を持つ配列
     //配列を初期化しておく
-    for (int i = 0; i < r; ++i) {
-        for (int j = 0; j < c; ++j) {
+    for (int i = 0; i < c; ++i) {
+        for (int j = 0; j < r; ++j) {
             d[i][j] = -1;
         }
     }
@@ -32,10 +32,28 @@ int main() {
     queue<pair<int, int>> que;
 
     //スタート地点をキューに入れ、距離を0にする
-    que.push(pair<sx, sy>);
+    que.push(pair<int, int>(sx, sy));
     d[sx][sy] = 0;
 
     while (!que.empty()) {
+        pair<int, int> p = que.front(); que.pop(); //キューの先頭を取り出す
 
+        if (p.first == gx && p.second == gy) break; //取り出したものがゴールならば探索をやめる
+
+        //4方向をループ
+        for (int i = 0; i < 4; ++i) {
+            //移動した後の点を(nx,ny)とする
+            int nx = p.first + dx[i];
+            int ny = p.second + dy[i];
+
+            //移動できる場所か判定
+            if (0 <= nx && nx < c && 0 <= ny && ny < r && f[ny][nx] == '.' && d[nx][ny] == -1) {
+                //移動できる場合はキューに入れて、その点の距離を設定
+                que.push(pair<int, int>(nx, ny));
+                d[nx][ny] = d[p.first][p.second] + 1;
+            }
+        }
     }
+
+    cout << d[gx][gy] << endl;
 }
