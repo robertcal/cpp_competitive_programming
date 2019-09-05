@@ -32,6 +32,8 @@ void dfs(int height, int width) {
                 //移動できる場合はスタックに入れて、そのマスを検知に
                 s.push(pair<int, int>(nh, nw));
                 seen[nh][nw] = true;
+
+                //4方向をスタックに入れているが、正しい深さ優先探索になっている？？
             }
         }
     }
