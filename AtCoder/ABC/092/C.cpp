@@ -8,27 +8,21 @@ int main() {
 
     int n; cin >> n;
 
-    vector<int> a(n);
-    set<int> se;
-    for (int i = 0; i < n; ++i) {
+    vector<int> a(n+2);
+
+    a[0] = 0;
+    a[n+1] = 0;
+
+    int s = 0;
+
+    for (int i = 1; i <= n; ++i) {
         cin >> a[i];
-        se.insert(a[i]);
+        s += abs(a[i] - a[i-1]);
     }
 
-    for (int i = 0; i < n; ++i) {
-        set<int> t;
-        t = se;
-        t.erase(a[i]);
+    s += abs(a[n+1] - a[n]);
 
-        int b = *t.begin();
-        int e = *t.rbegin();
-
-        if (b >= 0 && e >= 0) {
-            cout << 2 * e << endl;
-        } else if (b < 0 && e < 0) {
-            cout << 2 * abs(b) << endl;
-        } else {
-            cout << 2 * abs(b) + 2 * e << endl;
-        }
+    for (int i = 1; i <= n; ++i) {
+        cout << s - (abs(a[i+1] - a[i]) + abs(a[i] - a[i-1])) + abs(a[i+1] - a[i-1]) << endl;
     }
 }
