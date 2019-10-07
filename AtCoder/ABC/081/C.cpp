@@ -8,36 +8,28 @@ int main() {
 
     int n, k; cin >> n >> k;
 
-    map<int, int> ma;
+    map<int, int> mp;
 
     for (int i = 0; i < n; ++i) {
         int a; cin >> a;
 
-        ma[a]++;
+        mp[a]++;
     }
+
+    vector<int> v;
+
+    for (auto x : mp) {
+        v.push_back(x.second);
+    }
+
+    sort(v.begin(), v.end());
 
     int ans = 0;
 
-    if (ma.size() <= k) {
-        cout << 0 << endl;
-        return 0;
-    } else {
-        int target = 1;
+    int t = mp.size();
 
-        while (ma.size() > k) {
-            for (auto m : ma) {
-                if (m.second == target) {
-                    ans += target;
-                    ma.erase(m.first);
-
-                    if (ma.size() == k) {
-                        break;
-                    }
-                }
-            }
-
-            target++;
-        }
+    for (int i = 0; i < t-k; ++i) {
+        ans += v[i];
     }
 
     cout << ans << endl;
