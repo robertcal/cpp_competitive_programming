@@ -4,20 +4,21 @@
 using namespace std;
 typedef long long ll;
 
+//関数内に大きな配列はNG
+ll dp[110][100100] = {0};
+
 int main() {
 
     ll N, W; cin >> N >> W;
 
     vector<ll> w(N);
     vector<ll> v(N);
-    for (int i = 0; i < N; ++i) {
+    for (ll i = 0; i < N; ++i) {
         cin >> w[i] >> v[i];
     }
 
-    ll dp[110][100100] = {0};
-
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j <= W; ++j) {
+    for (ll i = 0; i < N; ++i) {
+        for (ll j = 0; j <= W; ++j) {
             if (j + w[i] <= W) {
                 dp[i+1][j+w[i]] = max(dp[i+1][j+w[i]], dp[i][j] + v[i]);
             }
@@ -28,7 +29,7 @@ int main() {
 
     ll ans = 0;
 
-    for (int i = 0; i <= W; ++i) {
+    for (ll i = 0; i <= W; ++i) {
         ans = max(ans, dp[N][i]);
     }
 
