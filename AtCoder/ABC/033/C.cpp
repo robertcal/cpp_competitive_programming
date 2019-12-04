@@ -26,6 +26,8 @@ int main() {
         }
 
         if (s[i-1] == '*') {
+            //掛け算でオーバーフローしてしまうためNG
+            //参考：https://pyteyon.hatenablog.com/entry/2019/02/10/110640
             sum *= s[i] - '0';
             continue;
         }
