@@ -22,12 +22,15 @@ int main() {
         int t = sum / n;
 
         int d = 0;
+        int ans = 0;
+
         for (int i = 0; i < n; ++i) {
-            if (t - a[i] > 0) {
-                d += t - a[i];
+            d += t - a[i];
+            if (d != 0) {
+                ++ans;
             }
         }
 
-        cout << d / t << endl;
+        cout << ans << endl;
     }
 }
