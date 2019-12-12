@@ -13,7 +13,9 @@ int main() {
 
     vector<string> v;
 
-    for (int i = 1; i <= s.size(); ++i) { //何文字か
+    int n = s.size();
+
+    for (int i = 1; i <= min(k, n); ++i) { //何文字か。最大でもk文字以下になる
         for (int j = 0; j <= s.size()-i; ++j) { //何文字目からか
             string st = "";
             for (int l = 0; l < i; ++l) {
