@@ -9,7 +9,7 @@ const ll LINF = 1e18;
 bool g[55][55];
 bool c[55];
 
-void bfs(int p) {
+void dfs(int p) {
     if (c[p]) {
         return;
     } else {
@@ -18,7 +18,7 @@ void bfs(int p) {
 
     for (int i = 0; i < 55; ++i) {
         if (g[p][i]) {
-            bfs(i);
+            dfs(i);
         }
     }
 }
@@ -58,8 +58,8 @@ int main() {
         g[a[i]][b[i]] = false;
         g[b[i]][a[i]] = false;
 
-        //bfsを使って調べる
-        bfs(a[i]);
+        //dfsを使って調べる
+        dfs(a[i]);
 
         if (!c[b[i]]) {
             ++ans;
