@@ -10,12 +10,12 @@ int main() {
 
     string s; cin >> s;
 
-    vector<int> t;
+    vector<ll> t;
 
-    int r = 0;
-    int l = 0;
+    ll r = 0;
+    ll l = 0;
 
-    for (int i = 0; i < s.size(); ++i) {
+    for (ll i = 0; i < s.size(); ++i) {
         if (s[i] == '<') {
             if (l < 0) {
                 t.push_back(l);
@@ -47,7 +47,7 @@ int main() {
         return 0;
     }
 
-    for (int i = 0; i < t.size(); ++i) {
+    for (ll i = 0; i < t.size(); ++i) {
         if (i == 0 && t[i] < 0) {
             ans += abs(t[i]) * (abs(t[i]) + 1) / 2;
             continue;
@@ -63,8 +63,8 @@ int main() {
         }
 
         if (t[i] > 0 && t[i+1] < 0) {
-            int ma = max(abs(t[i]), abs(t[i+1]));
-            int mi = min(abs(t[i]), abs(t[i+1]));
+            ll ma = max(abs(t[i]), abs(t[i+1]));
+            ll mi = min(abs(t[i]), abs(t[i+1]));
 
             ans += ma * (ma + 1) / 2;
             ans += mi * (mi - 1) / 2;
