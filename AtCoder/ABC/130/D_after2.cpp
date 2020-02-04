@@ -25,7 +25,7 @@ int main() {
     //二分探索
     //kを超える最初の場所を知りたい
     for (ll left = 0; left < n; ++left) {
-        ll start = left;
+        ll start = -1;
         ll end = n;
 
         if (s[n] - s[left] < k) {
