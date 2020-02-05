@@ -10,6 +10,7 @@ vector<vector<int>> g;
 
 vector<int> counter;
 
+//根の方を引数に入れておくことで、根に戻らないようにしている
 void dfs(int cu, int pa = -1) {
     for (auto v : g[cu]) {
         if (v == pa) {
