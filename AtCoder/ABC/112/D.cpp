@@ -10,35 +10,27 @@ int main() {
 
     ll n, m; cin >> n >> m;
 
-    ll now = m;
+    //約数列挙
+    vector<ll> divisor;
+    //片方は必ず√以下になる
+    for (ll i = 1; i * i <= m; ++i) {
+        if (m % i == 0) {
+            divisor.push_back(i);
 
-    vector<ll> prime_fact;
-    for (ll i = 2; i * i <= m; ++i) {
-        while (now % i == 0) {
-            prime_fact.push_back(i);
-            now /= i;
+            ll j = m / i;
+
+            if (i != j) {
+                divisor.push_back(j);
+            }
         }
     }
 
-    prime_fact.push_back(now);
+    sort(divisor.begin(), divisor.end());
 
-    sort(prime_fact.rbegin(), prime_fact.rend());
-
-    ll t = 1;
-    ll ans = 1;
-
-    for (auto p : prime_fact) {
-        if (t < n && t * p >= n) {
-            t *= p;
-            continue;
-        } else {
-            t *= p;
-        }
-
-        if (t >= n) {
-            ans *= p;
+    for (auto d : divisor) {
+        if (d >= n) {
+            cout << m / d << endl;
+            return 0;
         }
     }
-
-    cout << ans << endl;
 }
