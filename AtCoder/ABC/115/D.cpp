@@ -6,12 +6,31 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const ll LINF = 1e18;
 
+ll l[60];
+ll p[60];
+
+//レベルnのx層のパティの枚数を返す
+ll rec(ll n, ll x) {
+    if (n == 0) {
+        return 1;
+    }
+
+    if (x == 1) {
+        return 0;
+    }
+
+    if (l[n] / 2 + 1 < x) {
+        return 1 + p[n - 1] + rec(n - 1, x - (l[n] / 2 + 1));
+    } else if (l[n] / 2 + 1 == x) {
+        return 1 + p[n - 1];
+    } else {
+        return rec(n - 1, x - 1);
+    }
+}
+
 int main() {
 
     ll n, x; cin >> n >> x;
-
-    ll l[60];
-    ll p[60];
 
     l[0] = 1;
     p[0] = 1;
@@ -21,25 +40,5 @@ int main() {
         p[i] = 2 * p[i-1] + 1;
     }
 
-    ll left = l[n];
-    ll right = 1;
-
-    ll t = p[n];
-
-    ll ans = 0;
-
-    while (left - right > 1) {
-        ll mid = (left + right) / 2;
-
-        if (mid <= x) {
-            right = mid;
-            ans += t / 2 + 1;
-        } else {
-            left = mid;
-        }
-
-        t /= 2;
-    }
-
-    cout << ans << endl;
+    cout << rec(n, x) << endl;
 }
