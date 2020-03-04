@@ -51,10 +51,12 @@ int main() {
     vector<int> b(m);
     for (int i = 0; i < m; ++i) {
         cin >> a[i] >> b[i];
+        --a[i];
+        --b[i];
     }
 
-    sort(a.rbegin(), a.rend());
-    sort(b.rbegin(), b.rend());
+    reverse(a.begin(), a.end());
+    reverse(b.begin(), b.end());
 
     vector<ll> ans;
 
@@ -64,18 +66,23 @@ int main() {
     UnionFind tree(n);
 
     for (int i = 0; i < m-1; ++i) {
+        ll a_size = (ll)tree.size(a[i]);
+        ll b_size = (ll)tree.size(b[i]);
+
         tree.unite(a[i], b[i]);
 
         ll size = (ll)tree.size(a[i]);
 
-        t -= size * (size - 1) / 2 - (size - 1) * (size - 2) / 2;
+        if (t > 0 && size > a_size && size > b_size) {
+            t -= size * (size - 1) / 2 - (a_size) * (a_size - 1) / 2 - (b_size) * (b_size - 1) / 2;
+        }
 
         if (t < 0) t = 0;
 
         ans.push_back(t);
     }
 
-    sort(ans.rbegin(), ans.rend());
+    reverse(ans.begin(), ans.end());
 
     for (ll i = 0; i < ans.size(); ++i) {
         cout << ans[i] << endl;
