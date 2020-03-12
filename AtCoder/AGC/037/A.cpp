@@ -15,18 +15,20 @@ int main() {
     for (int i = 0; i < s.size(); ++i) {
         string t = "";
 
-        for (int j = i; i + j < s.size(); ++j) {
+        for (int j = i; j < s.size(); ++j) {
             t += s[j];
 
             if (v.size() == 0) {
                 v.push_back(t);
-                continue;
+                break;
+
             }
 
             if (v[v.size() - 1] != t) {
                 v.push_back(t);
 
                 i = j;
+                break;
             }
         }
     }
