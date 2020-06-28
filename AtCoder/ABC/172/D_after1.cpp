@@ -11,6 +11,8 @@ int main() {
     int n; cin >> n;
     vector<int> cnt(n + 1, 0);
 
+    // 約数の個数を求める
+    // 1の倍数、2の倍数とカウントしていくと、cnt[i]の約数の個数が求まる
     // 調和級数でlogn
     for (int i = 1; i <= n; ++i) {
         int t = i;
