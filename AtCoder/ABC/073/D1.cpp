@@ -10,15 +10,23 @@ vector<vector<ll>> d;
 ll ans = LINF;
 
 void rec(ll start, map<ll, ll> done, ll sum) {
+    bool last = true;
+    for (auto town : done) {
+        if (town.second == 0) last = false;
+    }
+
+    if (last) {
+        ans = min(ans, sum);
+        return;
+    }
+
     for (auto town : done) {
         if (town.second == 1) continue;
 
         done[town.first] = 1;
-        rec(town.first, done, sum += d[start][town.first]);
+        rec(town.first, done, sum + d[start][town.first]);
         done[town.first] = 0;
     }
-
-    ans = min(ans, sum);
 };
 
 int main() {
