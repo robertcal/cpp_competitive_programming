@@ -10,7 +10,7 @@ int main() {
 
     int n, m, q; cin >> n >> m >> q;
 
-    vector<vector<int>> c(n + 1, vector<int>(n + 1, 0));
+    vector<vector<int>> c(n, vector<int>(n, 0));
     for (int i = 0; i < m; ++i) {
         int l, r; cin >> l >> r;
         --l; --r;
@@ -19,15 +19,12 @@ int main() {
     }
 
     // 2次元累積和
-    for (int i = 0; i <= n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            c[i][j + 1] += c[i][j];
-        }
-    }
-
+    vector<vector<int>> sum(n + 1, vector<int>(n + 1, 0));
     for (int i = 0; i < n; ++i) {
-        for (int j = 0; j <= n; ++j) {
-            c[i + 1][j] += c[i][j];
+        for (int j = 0; j < n; ++j) {
+            // https://qiita.com/drken/items/56a6b68edef8fc605821
+            // 上記を参考にして書いたが、完全には理解できていない
+            sum[i + 1][j + 1] = sum[i][j + 1] + sum[i + 1][j] - sum[i][j] + c[i][j];
         }
     }
 
@@ -35,6 +32,6 @@ int main() {
         int l, r; cin >> l >> r;
         --l; --r;
 
-        cout << c[r + 1][r + 1] - c[r + 1][l] - c[l][r + 1] + c[l][l] << endl;
+        cout << sum[r + 1][r + 1] - sum[r + 1][l] - sum[l][r + 1] + sum[l][l] << endl;
     }
 }
