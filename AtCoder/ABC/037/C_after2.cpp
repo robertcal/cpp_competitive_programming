@@ -12,7 +12,7 @@ int main() {
     }
 
     // 閉区間で累積和
-    vector<long long> s(n);
+    vector<long long> s(n, 0);
     s[0] = a[0];
     for (int i = 0; i < n-1; ++i) {
         s[i+1] = s[i] + a[i+1];
